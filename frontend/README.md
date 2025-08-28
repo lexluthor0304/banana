@@ -5,9 +5,6 @@ A React front‑end app that edits user supplied images with Google's `models/ge
 > ⚠️ Image editing requires a valid Gemini API key and a Stripe payment flow. The current Stripe logic is a placeholder and requires a server side integration.
 
 ## Development
-
-Run these commands inside `frontend/` or from the repository root.
-
 ```bash
 npm install
 npm run dev
@@ -33,4 +30,3 @@ The output in `dist/` can be deployed on Cloudflare Pages.
 ## Stripe integration
 
 `src/App.jsx` contains a `handlePayment` function using `@stripe/stripe-js`. Replace the placeholder alert with a call to a backend that creates a Checkout session and sets `paid` to true after successful payment.
-
