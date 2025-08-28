@@ -5,7 +5,6 @@ A React front‑end app that edits user supplied images with Google's `models/ge
 > ⚠️ Image editing requires a valid Gemini API key and a Stripe payment flow. The current Stripe logic is a placeholder and requires a server side integration.
 
 ## Development
-
 ```bash
 npm install
 npm run dev
