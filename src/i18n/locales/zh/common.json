@@ -1,0 +1,22 @@
+{
+  "title": "图像编辑",
+  "subtitle": "使用 AI 编辑图像",
+  "upload_image": "上传图片",
+  "enter_prompt": "输入提示",
+  "start_editing": "开始编辑",
+  "result": "结果",
+  "download": "下载",
+  "buy_credits": "购买点数",
+  "select_pack": "选择套餐",
+  "credits_left": "剩余点数：{{count}}",
+  "no_credits": "没有点数，请购买。",
+  "go_to_checkout": "返回应用",
+  "processing": "处理中...",
+  "error_no_credits": "点数不足。",
+  "error_upload_required": "请上传图片。",
+  "error_api": "服务器错误。",
+  "language": "语言",
+  "original": "原图",
+  "edited": "编辑后",
+  "cancel": "已取消"
+}

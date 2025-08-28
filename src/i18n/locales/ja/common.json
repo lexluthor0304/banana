@@ -1,0 +1,22 @@
+{
+  "title": "画像エディタ",
+  "subtitle": "AIで画像を編集",
+  "upload_image": "画像をアップロード",
+  "enter_prompt": "プロンプトを入力",
+  "start_editing": "編集開始",
+  "result": "結果",
+  "download": "ダウンロード",
+  "buy_credits": "クレジットを購入",
+  "select_pack": "パックを選択",
+  "credits_left": "残りクレジット: {{count}}",
+  "no_credits": "クレジットがありません。購入してください。",
+  "go_to_checkout": "アプリに戻る",
+  "processing": "処理中...",
+  "error_no_credits": "クレジットが足りません。",
+  "error_upload_required": "画像をアップロードしてください。",
+  "error_api": "サーバーエラー。",
+  "language": "言語",
+  "original": "元の画像",
+  "edited": "編集後",
+  "cancel": "キャンセルされました"
+}
