@@ -1,0 +1,22 @@
+{
+  "title": "Image Editor",
+  "subtitle": "Edit images with AI",
+  "upload_image": "Upload Image",
+  "enter_prompt": "Enter prompt",
+  "start_editing": "Start Editing",
+  "result": "Result",
+  "download": "Download",
+  "buy_credits": "Buy Credits",
+  "select_pack": "Select Pack",
+  "credits_left": "Credits left: {{count}}",
+  "no_credits": "No credits, please purchase.",
+  "go_to_checkout": "Return to app",
+  "processing": "Processing...",
+  "error_no_credits": "No credits left.",
+  "error_upload_required": "Please upload an image.",
+  "error_api": "Server error.",
+  "language": "Language",
+  "original": "Original",
+  "edited": "Edited",
+  "cancel": "Cancelled"
+}
