@@ -1,5 +1,5 @@
 name = "image-edit-app"
-main = "dist/worker.js"
+main = "src/worker.ts"
 compatibility_date = "2024-04-05"
 
 [site]
