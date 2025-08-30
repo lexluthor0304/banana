@@ -1,6 +1,7 @@
 {
   "title": "画像エディタ",
   "subtitle": "AIで画像を編集",
+  "intro": "このアプリは Gemini API を使って画像を編集します。",
   "upload_image": "画像をアップロード",
   "enter_prompt": "プロンプトを入力",
   "start_editing": "編集開始",

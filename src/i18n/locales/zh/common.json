@@ -1,6 +1,7 @@
 {
   "title": "图像编辑",
   "subtitle": "使用 AI 编辑图像",
+  "intro": "该项目使用 Gemini API 来编辑图片。",
   "upload_image": "上传图片",
   "enter_prompt": "输入提示",
   "start_editing": "开始编辑",
