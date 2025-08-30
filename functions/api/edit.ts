@@ -1,11 +1,16 @@
 import { Env, consumeCredit, getCredits } from '../utils/credits';
 import { callGemini } from '../utils/gemini';
 
-const uidFrom = (req: Request) =>
-  (req.headers.get('cookie') || '').match(/uid=([^;]+)/)?.[1] || '';
+const userIdFrom = (req: Request) => req.headers.get('x-user-id') || '';
 
 export const onRequest: PagesFunction<Env> = async ({ request, env }) => {
-  const uid = uidFrom(request);
+  const uid = userIdFrom(request);
+  if (!uid) {
+    return new Response(
+      JSON.stringify({ error: 'unauthorized', code: 'error_unauthorized' }),
+      { status: 401, headers: { 'Content-Type': 'application/json' } },
+    );
+  }
   const credits = await getCredits(env, uid);
   if (credits < 1) {
     return new Response(
@@ -19,7 +24,10 @@ export const onRequest: PagesFunction<Env> = async ({ request, env }) => {
   const prompt = (form.get('prompt') as string) || '';
   if (!(file instanceof File)) {
     return new Response(
-      JSON.stringify({ error: 'upload required', code: 'error_upload_required' }),
+      JSON.stringify({
+        error: 'upload required',
+        code: 'error_upload_required',
+      }),
       { status: 400, headers: { 'Content-Type': 'application/json' } },
     );
   }
@@ -48,9 +56,9 @@ export const onRequest: PagesFunction<Env> = async ({ request, env }) => {
     });
   } catch (e) {
     console.error(e);
-    return new Response(
-      JSON.stringify({ error: 'api', code: 'error_api' }),
-      { status: 500, headers: { 'Content-Type': 'application/json' } },
-    );
+    return new Response(JSON.stringify({ error: 'api', code: 'error_api' }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' },
+    });
   }
 };
