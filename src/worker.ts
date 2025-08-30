@@ -1,7 +1,16 @@
 import Stripe from 'stripe';
-import { Env, getCredits, addCredits, consumeCredit } from '../functions/utils/credits';
+import {
+  Env as BaseEnv,
+  getCredits,
+  addCredits,
+  consumeCredit,
+} from '../functions/utils/credits';
 import { callGemini } from '../functions/utils/gemini';
 import type { Pack } from './lib/types';
+
+interface Env extends BaseEnv {
+  ASSETS: { fetch(request: Request): Promise<Response> };
+}
 
 const userIdFrom = (req: Request) => req.headers.get('x-user-id') || '';
 
@@ -241,8 +250,10 @@ export default {
       res = await handleEdit(request, env);
     } else if (path === '/api/stripe-webhook' && request.method === 'POST') {
       res = await handleStripeWebhook(request, env);
-    } else {
+    } else if (path.startsWith('/api/')) {
       res = new Response('not found', { status: 404 });
+    } else {
+      res = await env.ASSETS.fetch(request);
     }
 
     if (sid && uid) {
