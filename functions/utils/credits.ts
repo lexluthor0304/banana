@@ -7,28 +7,28 @@ export interface Env {
   STRIPE_WEBHOOK_SECRET: string;
 }
 
-const key = (uid: string) => `credits:${uid}`;
+const key = (userId: string) => `credits:${userId}`;
 
-export async function getCredits(env: Env, uid: string): Promise<number> {
-  const val = await env.CREDITS_KV.get(key(uid));
+export async function getCredits(env: Env, userId: string): Promise<number> {
+  const val = await env.CREDITS_KV.get(key(userId));
   return val ? Number(val) : 0;
 }
 
 export async function addCredits(
   env: Env,
-  uid: string,
+  userId: string,
   delta: number,
 ): Promise<number> {
-  const curr = await getCredits(env, uid);
+  const curr = await getCredits(env, userId);
   const next = curr + delta;
-  await env.CREDITS_KV.put(key(uid), String(next));
+  await env.CREDITS_KV.put(key(userId), String(next));
   return next;
 }
 
-export async function consumeCredit(env: Env, uid: string): Promise<number> {
-  const curr = await getCredits(env, uid);
+export async function consumeCredit(env: Env, userId: string): Promise<number> {
+  const curr = await getCredits(env, userId);
   if (curr < 1) throw new Error('NO_CREDITS');
   const next = curr - 1;
-  await env.CREDITS_KV.put(key(uid), String(next));
+  await env.CREDITS_KV.put(key(userId), String(next));
   return next;
 }

@@ -2,14 +2,17 @@ import Stripe from 'stripe';
 import { Env } from '../utils/credits';
 import type { Pack } from '../../src/lib/types';
 
-const uidFrom = (req: Request) =>
-  (req.headers.get('cookie') || '').match(/uid=([^;]+)/)?.[1] || '';
+const userIdFrom = (req: Request) => req.headers.get('x-user-id') || '';
 
 export const onRequest: PagesFunction<Env> = async ({ request, env }) => {
-  const body = await request.json<{
-    pack: Pack;
-  }>();
-  const uid = uidFrom(request);
+  const body = await request.json<{ pack: Pack }>();
+  const uid = userIdFrom(request);
+  if (!uid) {
+    return new Response('unauthorized', {
+      status: 401,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
   const price =
     body.pack === '50' ? env.STRIPE_PRICE_ID_50 : env.STRIPE_PRICE_ID_10;
   const stripe = new Stripe(env.STRIPE_SECRET_KEY, {

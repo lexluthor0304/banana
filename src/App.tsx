@@ -5,6 +5,8 @@ import ResultViewer from './components/ResultViewer';
 import LanguageSwitcher from './components/LanguageSwitcher';
 import CreditBadge from './components/CreditBadge';
 import BuyCreditsButton from './components/BuyCreditsButton';
+import LoginForm from './components/LoginForm';
+import RegisterForm from './components/RegisterForm';
 import * as api from './lib/api';
 import { Pack } from './lib/types';
 
@@ -14,12 +16,16 @@ const App: React.FC = () => {
   const [orig, setOrig] = useState<string | null>(null);
   const [edited, setEdited] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
     api
       .getMeCredits()
-      .then((r) => setCredits(r.credits))
-      .catch(() => {});
+      .then((r) => {
+        setCredits(r.credits);
+        setLoggedIn(true);
+      })
+      .catch(() => setLoggedIn(false));
   }, []);
 
   const onEdit = async (file: File, prompt: string) => {
@@ -54,6 +60,26 @@ const App: React.FC = () => {
             <LanguageSwitcher />
           </div>
           <p>{path === '/success' ? t('go_to_checkout') : t('cancel')}</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!loggedIn) {
+    const refresh = async () => {
+      const r = await api.getMeCredits();
+      setCredits(r.credits);
+      setLoggedIn(true);
+    };
+    return (
+      <div className="flex min-h-screen items-center justify-center p-4">
+        <div className="w-full max-w-md space-y-4 rounded-xl bg-white p-6 shadow-lg">
+          <div className="flex items-center justify-between">
+            <h1 className="text-3xl font-bold">{t('title')}</h1>
+            <LanguageSwitcher />
+          </div>
+          <LoginForm onLoggedIn={refresh} />
+          <RegisterForm onRegistered={refresh} />
         </div>
       </div>
     );

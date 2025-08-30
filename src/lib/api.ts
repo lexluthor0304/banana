@@ -36,3 +36,27 @@ export async function edit(image: File, prompt: string): Promise<Blob> {
   }
   return res.blob();
 }
+
+export async function register(
+  username: string,
+  password: string,
+): Promise<void> {
+  const res = await fetch('/api/register', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ username, password }),
+  });
+  await handleJson<unknown>(res);
+}
+
+export async function login(
+  username: string,
+  password: string,
+): Promise<void> {
+  const res = await fetch('/api/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ username, password }),
+  });
+  await handleJson<unknown>(res);
+}
