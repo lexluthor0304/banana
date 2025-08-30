@@ -1,6 +1,7 @@
 {
   "title": "Image Editor",
   "subtitle": "Edit images with AI",
+  "intro": "This app uses the Gemini API to edit images.",
   "upload_image": "Upload Image",
   "enter_prompt": "Enter prompt",
   "start_editing": "Start Editing",

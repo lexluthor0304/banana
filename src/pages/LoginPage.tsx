@@ -24,6 +24,7 @@ const LoginPage: React.FC<Props> = ({ onLoggedIn }) => {
           <h1 className="text-3xl font-bold">{t('title')}</h1>
           <LanguageSwitcher />
         </div>
+        <p className="text-gray-600">{t('intro')}</p>
         <LoginForm onLoggedIn={handleLoggedIn} />
         <Link to="/register" className="text-sm text-blue-600 underline">
           Go register
