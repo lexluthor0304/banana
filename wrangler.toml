@@ -7,5 +7,5 @@ bucket = "dist"
 
 [[kv_namespaces]]
 binding = "CREDITS_KV"
-id = "local"
-preview_id = "local"
+id = "5a4fb269ece1409b8ec1da3fbdf6e983"
+preview_id = "5a4fb269ece1409b8ec1da3fbdf6e983"
